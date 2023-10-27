@@ -1,2 +1,2 @@
-# java-utazas-javafx
-Java alkalmazások grafikus alkalmazás projektfeladat - Utazás
+# java-NB1-javafx
+Java alkalmazások grafikus alkalmazás projektfeladat - NB1
