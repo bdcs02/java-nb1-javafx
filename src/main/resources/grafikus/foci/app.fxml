@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="grafikus.foci.SoccerController" prefHeight="422.0" prefWidth="609.0">
+    <MenuBar fx:id="menuBar" prefHeight="19.0" prefWidth="1000">
+        <menus>
+            <Menu mnemonicParsing="false" text="Adatbázis">
+                <items>
+                    <MenuItem mnemonicParsing="false" text="Olvas" onAction="#menuDatabaseRead" />
+                    <MenuItem mnemonicParsing="false" text="Olvas2" onAction="#menuDatabaseRead2" />
+                    <MenuItem mnemonicParsing="false" text="Ír" onAction="#menuDatabaseCreate" />
+                    <MenuItem mnemonicParsing="false" text="Módosít" onAction="#menuDatabaseUpdate"/>
+                    <MenuItem mnemonicParsing="false" text="Töröl"  onAction="#menuDatabaseDelete" />
+                </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Rest1">
+                <items>
+                    <MenuItem mnemonicParsing="false" text="Create" onAction="#menuRest1Create" />
+                    <MenuItem mnemonicParsing="false" text="Read" onAction="#menuRest1Read"/>
+                    <MenuItem mnemonicParsing="false" text="Update" onAction="#menuRest1Update" />
+                    <MenuItem mnemonicParsing="false" text="Delete" onAction="#menuRest1Delete"/>
+                </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="SoapKliens">
+                <items>
+                    <MenuItem mnemonicParsing="false" text="Letöltés" onAction="#menuSoapDownload"/>
+                    <MenuItem mnemonicParsing="false" text="Letöltés2" onAction="#menuSoapDownload2" />
+                    <MenuItem mnemonicParsing="false" text="Grafikon" onAction="#menuSoapStat"/>
+                </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Adatbányászat">
+                <items>
+                    <MenuItem mnemonicParsing="false" text="Döntési fa" onAction="#menuDataDecision" />
+                    <MenuItem mnemonicParsing="false" text="Több algoritmus"  onAction="#menuDataMoreA" />
+                    <MenuItem mnemonicParsing="false" text="Több algoritmus-2"  onAction="#menuDataMoreA2" />
+                </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Egyéb">
+                <items>
+                    <MenuItem mnemonicParsing="false" text="Párhuzamos"  onAction="#menuParalell" />
+                    <MenuItem mnemonicParsing="false" text="Stream"  onAction="#menuStream"/>
+                </items>
+            </Menu>
+        </menus>
+    </MenuBar>
+
+    <VBox layoutY="19.0" alignment="CENTER" spacing="20.0">
+        <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+        </padding>
+        <Label fx:id="welcomeText" />
+        <Button onAction="#onHelloButtonClick" text="Hello!" />
+    </VBox>
+</AnchorPane>
