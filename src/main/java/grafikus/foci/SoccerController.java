@@ -37,13 +37,11 @@ public class SoccerController {
 
 
     @FXML
-    private Label resultLabel; // Adjunk hozzá egy Label-t
+    private Label resultLabel;
 
     @FXML
-    private Menu adatbazisMenu; // Az adatbázis menü
+    private Menu adatbazisMenu;
 
-    @FXML
-    private MenuItem olvasMenuItem; // Az Olvas menüpont
     public void menuDatabaseRead(ActionEvent actionEvent) {
         Session session = SoccerApplication.getSession();
         Transaction t = session.beginTransaction();
@@ -51,10 +49,8 @@ public class SoccerController {
                 .setMaxResults(10)
                 .list();
 
-        // Töröld a TableView előző tartalmát
         tableView.getItems().clear();
 
-        // Add hozzá a lista elemeket a TableView-hoz
         tableView.getItems().addAll(lista);
 
         t.commit();
