@@ -5,6 +5,7 @@
 <hibernate-configuration>
     <session-factory>
         <property name="connection.url">jdbc:sqlite:/c:/java/javalite.db</property>
-        <mapping class="org.example.Dolgozó"/>
+        <mapping class="grafikus.foci.model.ClubModel"/>
+        <mapping class="grafikus.foci.model.SoccersModel"/>
     </session-factory>
 </hibernate-configuration>
