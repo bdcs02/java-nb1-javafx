@@ -22,6 +22,7 @@ public class SoccerApplication extends Application {
     private static SessionFactory factory;
     private static Session session;
 
+
     public static Session getSession() {
         if (session == null || !session.isOpen()) {
             StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure("hibernate.cfg.xml").build();
@@ -45,7 +46,7 @@ public class SoccerApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(SoccerApplication.class.getResource("app.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 1000, 500);
+        Scene scene = new Scene(fxmlLoader.load(), 1000, 1000);
         stage.setTitle("NB-1 Foci");
         stage.setScene(scene);
         stage.show();

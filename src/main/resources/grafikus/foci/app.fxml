@@ -12,6 +12,13 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.layout.GridPane?>
 <AnchorPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="grafikus.foci.SoccerController" prefHeight="422.0" prefWidth="609.0">
     <MenuBar fx:id="menuBar" prefHeight="19.0" prefWidth="1000">
         <menus>
@@ -72,6 +79,37 @@
                 </TableColumn>
             </columns>
         </TableView>
+
+        <VBox fx:id="read_two">
+            <TextField fx:id="searchField" promptText="Keresés..." />
+
+            <ComboBox fx:id="filterComboBox">
+                <items>
+                    <FXCollections fx:factory="observableArrayList">
+                        <String fx:value="ID" />
+                        <String fx:value="Név" />
+                        <String fx:value="Érték" />
+                    </FXCollections>
+                </items>
+            </ComboBox>
+
+            <RadioButton fx:id="radioButton" text="Magyar" />
+
+            <CheckBox fx:id="checkBox" text="Külföldi" />
+
+            <Button text="Szűrés" onAction="#menuDatabaseRead2" />
+        </VBox>
+
+        <GridPane fx:id="gp1" hgap="2" vgap="4">
+                <Label GridPane.rowIndex="0" GridPane.columnIndex="0">Név:</Label>
+                <TextField fx:id="tfNév" GridPane.rowIndex="0" GridPane.columnIndex="1"></TextField>
+                <Label GridPane.rowIndex="1" GridPane.columnIndex="0">Kor:</Label>
+                <TextField fx:id="tfKor" GridPane.rowIndex="1" GridPane.columnIndex="1"></TextField>
+                <Label GridPane.rowIndex="2" GridPane.columnIndex="0">Súly:</Label>
+                <TextField fx:id="tfSúly" GridPane.rowIndex="2" GridPane.columnIndex="1"></TextField>
+                <Button onAction="#menuDatabaseCreate" GridPane.rowIndex="3" GridPane.columnIndex="1" >Küldés</Button>
+            </GridPane>
     </VBox>
+
 
 </AnchorPane>

@@ -5,6 +5,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import grafikus.foci.controller.menuDatabaseController;
@@ -21,6 +23,25 @@ public class SoccerController {
     private TableView<SoccersModel> tableView;
 
     @FXML
+    private VBox read_two;
+
+    @FXML
+    private GridPane gp1;
+
+    @FXML
+    private TextField searchField;
+
+    @FXML
+    private ComboBox<String> filterComboBox;
+
+    @FXML
+    private RadioButton radioButton;
+
+    @FXML
+    private CheckBox checkBox;
+
+
+    @FXML
     private TableColumn<SoccersModel, Integer> idColumn;
     @FXML
     private TableColumn<SoccersModel, String> nameColumn;
@@ -32,6 +53,20 @@ public class SoccerController {
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("firstName"));
         rateColumn.setCellValueFactory(new PropertyValueFactory<>("playerRate"));
+        ElemekTörlése();
+
+    }
+
+    public void ElemekTörlése() {
+        tableView.setVisible(false);
+        tableView.setManaged(false);
+
+        read_two.setVisible(false);
+        read_two.setManaged(false);
+
+        gp1.setVisible(false);
+        gp1.setManaged(false);
+
 
     }
 
@@ -43,6 +78,9 @@ public class SoccerController {
     private Menu adatbazisMenu;
 
     public void menuDatabaseRead(ActionEvent actionEvent) {
+        ElemekTörlése();
+        tableView.setVisible(true);
+        tableView.setManaged(true);
         Session session = SoccerApplication.getSession();
         Transaction t = session.beginTransaction();
         List<SoccersModel> lista = session.createQuery("FROM SoccersModel ORDER BY id ")
@@ -58,9 +96,25 @@ public class SoccerController {
 
 
     public void menuDatabaseRead2(ActionEvent actionEvent) {
-    }
+        ElemekTörlése();
+        read_two.setVisible(true);
+        read_two.setManaged(true);
+        tableView.setManaged(true);
+        tableView.setVisible(true);
+        tableView.getItems().clear();
+        String searchText = searchField.getText();
+        String selectedFilter = filterComboBox.getValue();
+        boolean isHungarian = radioButton.isSelected();
+        boolean isForeign = checkBox.isSelected();
 
+        Session session = SoccerApplication.getSession();
+        Transaction t = session.beginTransaction();
+
+
+        t.commit();
+    }
     public void menuDatabaseCreate(ActionEvent actionEvent) {
+        ElemekTörlése();
     }
 
     public void menuDatabaseUpdate(ActionEvent actionEvent) {
