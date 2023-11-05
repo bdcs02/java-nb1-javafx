@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<GridPane xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10" fx:controller="grafikus.foci.controller.ParalellController">
+    <Button fx:id="startButton" text="Start" onAction="#startButtonClicked" />
+    <Label fx:id="label1" text="" GridPane.rowIndex="1" GridPane.columnIndex="0" />
+    <Label fx:id="label2" text="" GridPane.rowIndex="1" GridPane.columnIndex="1" />
+</GridPane>

@@ -108,7 +108,13 @@
                 <Label GridPane.rowIndex="2" GridPane.columnIndex="0">Súly:</Label>
                 <TextField fx:id="tfSúly" GridPane.rowIndex="2" GridPane.columnIndex="1"></TextField>
                 <Button onAction="#menuDatabaseCreate" GridPane.rowIndex="3" GridPane.columnIndex="1" >Küldés</Button>
-            </GridPane>
+        </GridPane>
+
+        <GridPane xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10">
+            <Button fx:id="startButton" text="Start" onAction="#menuParalell" />
+            <Label fx:id="label1" text="" />
+            <Label fx:id="label2" text="" />
+        </GridPane>
     </VBox>
 
 
