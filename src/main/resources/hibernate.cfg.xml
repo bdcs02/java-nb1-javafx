@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE hibernate-configuration PUBLIC
         "-//Hibernate/Hibernate Configuration DTD 5.3//EN"
@@ -9,3 +10,16 @@
         <mapping class="grafikus.foci.model.SoccersModel"/>
     </session-factory>
 </hibernate-configuration>
+=======
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 5.3//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration">
+<hibernate-configuration>
+    <session-factory>
+        <property name="connection.url">jdbc:sqlite:/c:/java/javalite.db</property>
+        <mapping class="grafikus.foci.model.ClubModel"/>
+        <mapping class="grafikus.foci.model.SoccersModel"/>
+    </session-factory>
+</hibernate-configuration>
+>>>>>>> 1b60a021d8ee0a46b6f9803e6cf6b66e7314ef1b

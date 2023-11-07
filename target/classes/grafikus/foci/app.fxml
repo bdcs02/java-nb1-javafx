@@ -59,20 +59,6 @@
                     <MenuItem mnemonicParsing="false" text="Stream"  onAction="#menuStream"/>
                 </items>
             </Menu>
-<<<<<<< HEAD
-            <Menu mnemonicParsing="false" text="Forex">
-                <items>
-                    <MenuItem mnemonicParsing="false" text="Számlainformációk"  onAction="#menuInfo" />
-                    <MenuItem mnemonicParsing="false" text="Aktuális árak"  onAction="#menuPrices"/>
-                    <MenuItem mnemonicParsing="false" text="Historikus árak"  onAction="#menuHistorical"/>
-                    <MenuItem mnemonicParsing="false" text="Pozíció nyitás"  onAction="#menuOpenPos"/>
-                    <MenuItem mnemonicParsing="false" text="Pozíció zárás"  onAction="#menuClosePos"/>
-                    <MenuItem mnemonicParsing="false" text="Nyitott pozíciók"  onAction="#menuPositions"/>
-
-                </items>
-            </Menu>
-=======
->>>>>>> 1b60a021d8ee0a46b6f9803e6cf6b66e7314ef1b
         </menus>
     </MenuBar>
 
@@ -129,12 +115,6 @@
             <Label fx:id="label1" text="" />
             <Label fx:id="label2" text="" />
         </GridPane>
-<<<<<<< HEAD
-
-        <Label fx:id="accountDetails"></Label>
-        <Label fx:id="pricesNow"></Label>
-=======
->>>>>>> 1b60a021d8ee0a46b6f9803e6cf6b66e7314ef1b
     </VBox>
 
 

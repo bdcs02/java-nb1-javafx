@@ -1,5 +1,6 @@
 package grafikus.foci;
 
+<<<<<<< HEAD
 
 import com.oanda.v20.account.AccountID;
 import com.oanda.v20.account.AccountSummary;
@@ -7,6 +8,10 @@ import grafikus.foci.model.SoccersModel;
 import grafikus.foci.controller.*;
 import grafikus.oanda.v20.Config;
 import javafx.application.Platform;
+=======
+import grafikus.foci.model.SoccersModel;
+import grafikus.foci.controller.*;
+>>>>>>> 1b60a021d8ee0a46b6f9803e6cf6b66e7314ef1b
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -24,6 +29,7 @@ import grafikus.foci.controller.menuRestController;
 import grafikus.foci.controller.*;
 
 import java.io.IOException;
+<<<<<<< HEAD
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -33,6 +39,13 @@ import static com.oanda.v20.instrument.CandlestickGranularity.H1;
 public class SoccerController {
     @FXML
     private Label accountDetails;
+=======
+import java.util.List;
+
+public class SoccerController {
+    @FXML
+    private Label welcomeText;
+>>>>>>> 1b60a021d8ee0a46b6f9803e6cf6b66e7314ef1b
 
     @FXML
     private TableView<SoccersModel> tableView;
@@ -55,11 +68,14 @@ public class SoccerController {
     @FXML
     private CheckBox checkBox;
 
+<<<<<<< HEAD
     @FXML
     private Button startButton;
 
     @FXML
     private Label pricesNow;
+=======
+>>>>>>> 1b60a021d8ee0a46b6f9803e6cf6b66e7314ef1b
 
     @FXML
     private TableColumn<SoccersModel, Integer> idColumn;
@@ -87,6 +103,7 @@ public class SoccerController {
         gp1.setVisible(false);
         gp1.setManaged(false);
 
+<<<<<<< HEAD
         startButton.setVisible(false);
         startButton.setManaged(false);
 
@@ -96,6 +113,8 @@ public class SoccerController {
         pricesNow.setVisible(false);
         pricesNow.setManaged(false);
 
+=======
+>>>>>>> 1b60a021d8ee0a46b6f9803e6cf6b66e7314ef1b
 
     }
 
@@ -167,7 +186,10 @@ public class SoccerController {
         session.close();
 
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 1b60a021d8ee0a46b6f9803e6cf6b66e7314ef1b
     public void menuDatabaseCreate(ActionEvent actionEvent) {
         ElemekTörlése();
     }
@@ -231,6 +253,7 @@ public class SoccerController {
 
     public void menuRest1Delete(ActionEvent actionEvent) {
     }
+<<<<<<< HEAD
 
     @FXML
     public void menuInfo(ActionEvent event) {
@@ -320,4 +343,6 @@ public class SoccerController {
     public void menuPositions(ActionEvent event) {
         // Ide írd meg a Nyitott pozíciók kezelőkódot
     }
+=======
+>>>>>>> 1b60a021d8ee0a46b6f9803e6cf6b66e7314ef1b
 }

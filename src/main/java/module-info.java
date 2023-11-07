@@ -5,6 +5,7 @@ module grafikus.foci {
     requires java.naming;
     requires java.sql;
     requires org.hibernate.orm.core;
+<<<<<<< HEAD
     requires gson;
     requires httpcore;
     requires httpclient;
@@ -23,3 +24,13 @@ module grafikus.foci {
     exports grafikus.foci;
 }
 
+=======
+    opens grafikus.foci to javafx.fxml;
+    opens grafikus.foci.model to javafx.base, org.hibernate.orm.core;
+    opens grafikus.foci.controller to javafx.fxml; // A controllers csomag exportálása
+    exports grafikus.foci;
+}
+
+
+
+>>>>>>> 1b60a021d8ee0a46b6f9803e6cf6b66e7314ef1b
