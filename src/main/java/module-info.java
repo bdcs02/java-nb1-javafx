@@ -18,6 +18,8 @@ module grafikus.foci {
      opens com.oanda.v20.pricing_common to gson;
      opens com.oanda.v20.order to gson;
     opens com.oanda.v20.instrument to gson;
+    opens com.oanda.v20.trade to gson;
+    opens com.oanda.v20 to gson;
     exports grafikus.foci;
 }
 
