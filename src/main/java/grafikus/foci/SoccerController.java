@@ -4,12 +4,18 @@ import com.oanda.v20.account.AccountID;
 import com.oanda.v20.account.AccountSummary;
 import grafikus.foci.data.GépiTanulás1;
 import grafikus.foci.controller.ParalellController;
+import grafikus.foci.data.GépiTanulás2CrossValidation;
 import grafikus.foci.model.SoccersModel;
 import grafikus.oanda.v20.Config;
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -19,14 +25,18 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import weka.classifiers.bayes.NaiveBayes;
+import weka.classifiers.functions.SMO;
+import weka.classifiers.lazy.IBk;
+import weka.classifiers.trees.J48;
+import weka.classifiers.trees.RandomForest;
+import weka.core.Utils;
 
 import javax.net.ssl.HttpsURLConnection;
 import javax.persistence.Query;
 import java.io.*;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 import static com.oanda.v20.instrument.CandlestickGranularity.H1;
 
@@ -138,6 +148,15 @@ public class SoccerController {
     @FXML
     private Label historicalPrice;
 
+    @FXML
+    private GridPane tobbAlgoritmusGrid;
+
+    @FXML
+    private Label tobbAlgoritmus;
+
+    ChoiceBox DataMoreA2CB = new ChoiceBox();
+
+
     static String token = "e455a8a36e6c012a6714e438908d8ba40561925e2074b2064af403b50149e976";
     static HttpsURLConnection connection;
 
@@ -193,6 +212,15 @@ public class SoccerController {
 
         restPostPutForm.setVisible(false);
         restPostPutForm.setManaged(false);
+
+        tobbAlgoritmus.setVisible(false);
+        tobbAlgoritmus.setManaged(false);
+
+        tobbAlgoritmusGrid.setVisible(false);
+        tobbAlgoritmusGrid.setManaged(false);
+
+        DataMoreA2CB.setVisible(false);
+        DataMoreA2CB.setManaged(false);
     }
 
     public void RestFxReset()
@@ -398,16 +426,151 @@ public class SoccerController {
 
 
     public void menuDataDecision(ActionEvent actionEvent) {
+        ElemekTörlése();
         String fájlNév = "src/main/java/grafikus/foci/data/diabetes.arff";
         int classIndex=8;	// 20. oszlopot kell előre jelezni
         new GépiTanulás1(fájlNév, classIndex);
 
     }
 
-    public void menuDataMoreA(ActionEvent actionEvent) {
+    public void menuDataMoreA(ActionEvent actionEvent) throws Exception {
+        ElemekTörlése();
+
+        tobbAlgoritmus.setVisible(true);
+        tobbAlgoritmus.setManaged(true);
+        tobbAlgoritmus.setText("");
+        tobbAlgoritmusGrid.setVisible(true);
+        tobbAlgoritmusGrid.setManaged(true);
+        String fájlNév = "src/main/java/grafikus/foci/data/diabetes.arff";
+        int classIndex=8;	// 20. oszlopot kell előre jelezni
+        var j48 = new GépiTanulás2CrossValidation(fájlNév, classIndex, new J48());
+        var smo = new GépiTanulás2CrossValidation(fájlNév, classIndex, new SMO());
+        var naiveBayes = new GépiTanulás2CrossValidation(fájlNév, classIndex, new NaiveBayes());
+        IBk classifier = new IBk();
+// 10 legközelebbi szomszéd:
+        classifier.setOptions(Utils.splitOptions("-K 10"));
+        var ibk = new GépiTanulás2CrossValidation(fájlNév, classIndex, classifier);
+        var randomForest = new GépiTanulás2CrossValidation(fájlNév, classIndex, new RandomForest());
+
+
+        PrintWriter kiir = new PrintWriter("Gépi tanulás.txt");
+        j48.WriteToFile(kiir);
+        smo.WriteToFile(kiir);
+        naiveBayes.WriteToFile(kiir);
+        ibk.WriteToFile(kiir);
+        randomForest.WriteToFile(kiir);
+        kiir.close();
+
+        Map<String, Double> map = new HashMap<String, Double>();
+        map.put(j48.classifier.getClass().getName(), j48.CCI);
+        map.put(smo.classifier.getClass().getName(), smo.CCI);
+        map.put(naiveBayes.classifier.getClass().getName(),naiveBayes.CCI );
+        map.put(ibk.classifier.getClass().getName(), ibk.CCI);
+        map.put(randomForest.classifier.getClass().getName(), randomForest.CCI);
+
+        double bestCCI = Collections.max(map.entrySet(), Map.Entry.comparingByValue()).getValue();
+        String best = Collections.max(map.entrySet(), Map.Entry.comparingByValue()).getKey();
+        tobbAlgoritmus.setText("A legjobb eredmény: " + best + "\nCorrectly Classified Instances: " + bestCCI);
     }
 
-    public void menuDataMoreA2(ActionEvent actionEvent) {
+    public void menuDataMoreA2(ActionEvent actionEvent) throws Exception {
+        ElemekTörlése();
+        tobbAlgoritmus.setVisible(true);
+        tobbAlgoritmus.setManaged(true);
+        tobbAlgoritmus.setText("Válasszon ki egy elemet!");
+
+        tobbAlgoritmusGrid.setVisible(true);
+        tobbAlgoritmusGrid.setManaged(true);
+
+        String st[] = { "J48", "SMO", "NaiveBayes", "IBK", "RandomForest" };
+
+        // create a choiceBox
+        DataMoreA2CB = new ChoiceBox(FXCollections.observableArrayList(st));
+
+        tobbAlgoritmusGrid.getChildren().add(DataMoreA2CB);
+        DataMoreA2CB.setVisible(true);
+        DataMoreA2CB.setManaged(true);
+
+        // add a listener
+        DataMoreA2CB.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
+
+            // if the item of the list is changed
+            public void changed(ObservableValue ov, Number value, Number new_value)
+            {
+                if (new_value != null) {
+
+                    String fájlNév = "src/main/java/grafikus/foci/data/diabetes.arff";
+                    int classIndex = 8;    // 20. oszlopot kell előre jelezni
+                    switch (st[new_value.intValue()]) {
+                        case "J48": {
+                            var object = new GépiTanulás2CrossValidation(fájlNév, classIndex, new J48());
+                            tobbAlgoritmus.setText("A kiválasztott algoritmus: "+ st[new_value.intValue()]
+                                    + "\nCorrectly Classified Instances: " + object.CCI
+                                    + "\nIncorrectly Classified Instances: " + object.ICI
+                                    + "\nTP: " + object.TP
+                                    + "\nTN: " + object.TN
+                                    + "\nFP: " + object.FP
+                                    + "\nFN: " + object.FN);
+                            break;
+                        }
+                        case "SMO": {
+                            var object = new GépiTanulás2CrossValidation(fájlNév, classIndex, new SMO());
+                            tobbAlgoritmus.setText("A kiválasztott algoritmus: "+ st[new_value.intValue()]
+                                    + "\nCorrectly Classified Instances: " + object.CCI
+                                    + "\nIncorrectly Classified Instances: " + object.ICI
+                                    + "\nTP: " + object.TP
+                                    + "\nTN: " + object.TN
+                                    + "\nFP: " + object.FP
+                                    + "\nFN: " + object.FN);
+                            break;
+                        }
+                        case "NaiveBayes": {
+                            var object = new GépiTanulás2CrossValidation(fájlNév, classIndex, new NaiveBayes());
+                            tobbAlgoritmus.setText("A kiválasztott algoritmus: "+ st[new_value.intValue()]
+                                    + "\nCorrectly Classified Instances: " + object.CCI
+                                    + "\nIncorrectly Classified Instances: " + object.ICI
+                                    + "\nTP: " + object.TP
+                                    + "\nTN: " + object.TN
+                                    + "\nFP: " + object.FP
+                                    + "\nFN: " + object.FN);
+                            break;
+                        }
+                        case "IBK": {
+                            IBk classifier = new IBk();
+                            try {
+                                classifier.setOptions(Utils.splitOptions("-K 10"));
+                            } catch (Exception e) {
+                                throw new RuntimeException(e);
+                            }
+                            var object = new GépiTanulás2CrossValidation(fájlNév, classIndex, classifier);
+                            tobbAlgoritmus.setText("A kiválasztott algoritmus: "+ st[new_value.intValue()]
+                                    + "\nCorrectly Classified Instances: " + object.CCI
+                                    + "\nIncorrectly Classified Instances: " + object.ICI
+                                    + "\nTP: " + object.TP
+                                    + "\nTN: " + object.TN
+                                    + "\nFP: " + object.FP
+                                    + "\nFN: " + object.FN);
+                            break;
+                        }
+                        case "RandomForest": {
+                            var object = new GépiTanulás2CrossValidation(fájlNév, classIndex, new RandomForest());
+                            tobbAlgoritmus.setText("A kiválasztott algoritmus: "+ st[new_value.intValue()]
+                                    + "\nCorrectly Classified Instances: " + object.CCI
+                                    + "\nIncorrectly Classified Instances: " + object.ICI
+                                    + "\nTP: " + object.TP
+                                    + "\nTN: " + object.TN
+                                    + "\nFP: " + object.FP
+                                    + "\nFN: " + object.FN);
+                            break;
+                        }
+                    }
+
+                } else {
+
+                    tobbAlgoritmus.setText("Válasszon ki egy elemet!");
+                }
+            }
+        });
     }
 
     public void menuParalell(ActionEvent actionEvent) throws IOException {

@@ -1,5 +1,6 @@
 package grafikus.foci.data;
 
+import weka.classifiers.Classifier;
 import weka.classifiers.Evaluation;
 import weka.classifiers.trees.J48;
 import weka.core.Instances;
@@ -9,6 +10,7 @@ import java.io.PrintWriter;
 import java.util.Random;
 
 public class GépiTanulás1 {
+
     public GépiTanulás1(String fájlNév, int classIndex){
         try {
             PrintWriter kiir = new PrintWriter("Döntési fa.txt");
