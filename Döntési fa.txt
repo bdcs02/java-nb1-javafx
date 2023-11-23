@@ -1,0 +1,82 @@
+instances.size():768
+
+GépiTanulás1: Randomize után vagy anélkül: tanító: első 90%, kiértékelő: utolsó 10%
+tanító.size():691
+kiértékelő.size():76
+
+Results
+Correctly Classified Instances          58               76.3158 %
+Incorrectly Classified Instances        18               23.6842 %
+Kappa statistic                          0.4838
+Mean absolute error                      0.3346
+Root mean squared error                  0.4279
+Relative absolute error                 69.2056 %
+Root relative squared error             87.0789 %
+Total Number of Instances               76     
+
+Correctly Classified Instances:58
+Incorrectly Classified Instances:18
+J48 pruned tree
+------------------
+
+plas <= 127: tested_negative (437.0/85.0)
+plas > 127
+|   mass <= 29.9: tested_negative (70.0/20.0)
+|   mass > 29.9
+|   |   pres <= 61: tested_positive (22.0)
+|   |   pres > 61
+|   |   |   plas <= 157
+|   |   |   |   age <= 30
+|   |   |   |   |   preg <= 0
+|   |   |   |   |   |   pres <= 68: tested_positive (4.0)
+|   |   |   |   |   |   pres > 68
+|   |   |   |   |   |   |   insu <= 135
+|   |   |   |   |   |   |   |   mass <= 35.5: tested_negative (3.0)
+|   |   |   |   |   |   |   |   mass > 35.5: tested_positive (4.0/1.0)
+|   |   |   |   |   |   |   insu > 135: tested_negative (2.0)
+|   |   |   |   |   preg > 0
+|   |   |   |   |   |   preg <= 2: tested_negative (11.0)
+|   |   |   |   |   |   preg > 2
+|   |   |   |   |   |   |   pedi <= 0.332: tested_negative (6.0)
+|   |   |   |   |   |   |   pedi > 0.332
+|   |   |   |   |   |   |   |   plas <= 144: tested_positive (4.0)
+|   |   |   |   |   |   |   |   plas > 144: tested_negative (3.0)
+|   |   |   |   age > 30: tested_positive (52.0/15.0)
+|   |   |   plas > 157: tested_positive (73.0/11.0)
+
+Number of Leaves  : 	13
+
+Size of the tree : 	25
+
+J48 pruned tree
+------------------
+
+plas <= 127: tested_negative (437.0/85.0)
+plas > 127
+|   mass <= 29.9: tested_negative (70.0/20.0)
+|   mass > 29.9
+|   |   pres <= 61: tested_positive (22.0)
+|   |   pres > 61
+|   |   |   plas <= 157
+|   |   |   |   age <= 30
+|   |   |   |   |   preg <= 0
+|   |   |   |   |   |   pres <= 68: tested_positive (4.0)
+|   |   |   |   |   |   pres > 68
+|   |   |   |   |   |   |   insu <= 135
+|   |   |   |   |   |   |   |   mass <= 35.5: tested_negative (3.0)
+|   |   |   |   |   |   |   |   mass > 35.5: tested_positive (4.0/1.0)
+|   |   |   |   |   |   |   insu > 135: tested_negative (2.0)
+|   |   |   |   |   preg > 0
+|   |   |   |   |   |   preg <= 2: tested_negative (11.0)
+|   |   |   |   |   |   preg > 2
+|   |   |   |   |   |   |   pedi <= 0.332: tested_negative (6.0)
+|   |   |   |   |   |   |   pedi > 0.332
+|   |   |   |   |   |   |   |   plas <= 144: tested_positive (4.0)
+|   |   |   |   |   |   |   |   plas > 144: tested_negative (3.0)
+|   |   |   |   age > 30: tested_positive (52.0/15.0)
+|   |   |   plas > 157: tested_positive (73.0/11.0)
+
+Number of Leaves  : 	13
+
+Size of the tree : 	25
+
