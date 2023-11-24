@@ -1,0 +1,26 @@
+package grafikus.oanda.v20;
+
+import com.oanda.v20.instrument.Candlestick;
+import com.oanda.v20.instrument.InstrumentCandlesRequest;
+import com.oanda.v20.instrument.InstrumentCandlesResponse;
+import com.oanda.v20.primitives.InstrumentName;
+import static com.oanda.v20.instrument.CandlestickGranularity.H1;
+public class HistorikusAdatok {
+    public static void main(String[] args) {
+        com.oanda.v20.Context ctx = new com.oanda.v20.ContextBuilder(Config.URL).setToken(Config.TOKEN).setApplication("HistorikusAdatok").build();
+        try {
+            InstrumentCandlesRequest request = new InstrumentCandlesRequest(new InstrumentName("EUR_USD"));
+            request.setGranularity(H1);
+            request.setCount(10L);	// 10 adat	L: long adattípus
+            InstrumentCandlesResponse resp = ctx.instrument.candles(request);
+            for(Candlestick candle: resp.getCandles())
+                System.out.println(candle);
+            for(Candlestick candle: resp.getCandles())
+                System.out.println(candle.getTime()+"\t"+candle.getMid().getC());
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+}

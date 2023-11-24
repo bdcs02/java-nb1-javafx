@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.layout.GridPane?>
+
+
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ChoiceBox?>
+<AnchorPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="grafikus.foci.SoccerController" prefHeight="422.0" prefWidth="609.0">
+    <MenuBar fx:id="menuBar" prefHeight="19.0" prefWidth="1000">
+        <menus>
+            <Menu mnemonicParsing="false" text="Adatbázis">
+                <items>
+                    <MenuItem mnemonicParsing="false" text="Olvas" onAction="#menuDatabaseRead" />
+                    <MenuItem mnemonicParsing="false" text="Olvas2" onAction="#menuDatabaseRead2" />
+                    <MenuItem mnemonicParsing="false" text="Ír" onAction="#menuDatabaseCreate" />
+                    <MenuItem mnemonicParsing="false" text="Módosít" onAction="#menuDatabaseUpdate"/>
+                    <MenuItem mnemonicParsing="false" text="Töröl"  onAction="#menuDatabaseDelete" />
+                </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Rest1">
+                <items>
+                    <MenuItem mnemonicParsing="false" text="Create" onAction="#menuRest1Create" />
+                    <MenuItem mnemonicParsing="false" text="Read" onAction="#menuRest1Read"/>
+                    <MenuItem mnemonicParsing="false" text="Update" onAction="#menuRest1Update" />
+                    <MenuItem mnemonicParsing="false" text="Delete" onAction="#menuRest1Delete"/>
+                </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="SoapKliens">
+                <items>
+                    <MenuItem mnemonicParsing="false" text="Letöltés" onAction="#menuSoapDownload"/>
+                    <MenuItem mnemonicParsing="false" text="Letöltés2" onAction="#menuSoapDownload2" />
+                    <MenuItem mnemonicParsing="false" text="Grafikon" onAction="#menuSoapStat"/>
+                </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Adatbányászat">
+                <items>
+                    <MenuItem mnemonicParsing="false" text="Döntési fa" onAction="#menuDataDecision" />
+                    <MenuItem mnemonicParsing="false" text="Több algoritmus"  onAction="#menuDataMoreA" />
+                    <MenuItem mnemonicParsing="false" text="Több algoritmus-2"  onAction="#menuDataMoreA2" />
+                </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Egyéb">
+                <items>
+                    <MenuItem mnemonicParsing="false" text="Párhuzamos"  onAction="#menuParalell" />
+                    <MenuItem mnemonicParsing="false" text="Stream"  onAction="#menuStream"/>
+                </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Forex">
+                <items>
+                    <MenuItem mnemonicParsing="false" text="Számlainformációk"  onAction="#menuInfo" />
+                    <MenuItem mnemonicParsing="false" text="Aktuális árak"  onAction="#menuPrices"/>
+                    <MenuItem mnemonicParsing="false" text="Historikus árak"  onAction="#menuHistorical"/>
+                    <MenuItem mnemonicParsing="false" text="Pozíció nyitás"  onAction="#menuOpenPos"/>
+                    <MenuItem mnemonicParsing="false" text="Pozíció zárás"  onAction="#menuClosePos"/>
+                    <MenuItem mnemonicParsing="false" text="Nyitott pozíciók"  onAction="#menuPositions"/>
+
+                </items>
+            </Menu>
+        </menus>
+    </MenuBar>
+
+    <VBox layoutY="19.0" alignment="CENTER" spacing="20.0">
+        <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+        </padding>
+        <TableView fx:id="tableView" prefHeight="400.0" prefWidth="600.0">
+            <columns>
+                <TableColumn fx:id="idColumn" text="ID">
+                    <prefWidth>75.0</prefWidth>
+                </TableColumn>
+                <TableColumn fx:id="nameColumn" text="Név">
+                    <prefWidth>150.0</prefWidth>
+                </TableColumn>
+                <TableColumn fx:id="rateColumn" text="Érték">
+                    <prefWidth>75.0</prefWidth>
+                </TableColumn>
+            </columns>
+        </TableView>
+
+        <VBox fx:id="read_two">
+            <TextField fx:id="searchField" promptText="Keresés..." />
+
+            <ComboBox fx:id="filterComboBox">
+                <items>
+                    <FXCollections fx:factory="observableArrayList">
+                        <String fx:value="ID" />
+                        <String fx:value="Név" />
+                        <String fx:value="Érték" />
+                    </FXCollections>
+                </items>
+            </ComboBox>
+
+            <RadioButton fx:id="radioButton" text="Magyar" />
+
+            <CheckBox fx:id="checkBox" text="Külföldi" />
+
+            <Button text="Szűrés" onAction="#menuDatabaseRead2" />
+        </VBox>
+
+        <GridPane fx:id="gp1" hgap="2" vgap="4">
+            <Label GridPane.rowIndex="0" GridPane.columnIndex="0">Mezszám:</Label>
+            <TextField fx:id="tfMez" GridPane.rowIndex="0" GridPane.columnIndex="1"></TextField>
+            <Label GridPane.rowIndex="1" GridPane.columnIndex="0">Klub ID:</Label>
+            <TextField fx:id="tfClub" GridPane.rowIndex="1" GridPane.columnIndex="1"></TextField>
+            <Label GridPane.rowIndex="2" GridPane.columnIndex="0">Poszt ID:</Label>
+            <TextField fx:id="tfPoszt" GridPane.rowIndex="2" GridPane.columnIndex="1"></TextField>
+            <Label GridPane.rowIndex="3" GridPane.columnIndex="0">Utónév:</Label>
+            <TextField fx:id="tfUtónév" GridPane.rowIndex="3" GridPane.columnIndex="1"></TextField>
+            <Label GridPane.rowIndex="4" GridPane.columnIndex="0">Vezetéknév:</Label>
+            <TextField fx:id="tfVezetéknév" GridPane.rowIndex="4" GridPane.columnIndex="1"></TextField>
+            <Label GridPane.rowIndex="5" GridPane.columnIndex="0">Születési dátum:</Label>
+            <TextField fx:id="tfSzulido" GridPane.rowIndex="5" GridPane.columnIndex="1"></TextField>
+            <Label GridPane.rowIndex="6" GridPane.columnIndex="0">Magyar:</Label>
+            <RadioButton fx:id="tfMagyar" GridPane.rowIndex="6" GridPane.columnIndex="1"></RadioButton>
+            <Label GridPane.rowIndex="7" GridPane.columnIndex="0">Külföldi:</Label>
+            <RadioButton fx:id="tfKüldölfi" GridPane.rowIndex="7" GridPane.columnIndex="1"></RadioButton>
+            <Label GridPane.rowIndex="8" GridPane.columnIndex="0">Érték:</Label>
+            <TextField fx:id="tfÉrték" GridPane.rowIndex="8" GridPane.columnIndex="1"></TextField>
+            <Label fx:id="tfIDLabel" GridPane.rowIndex="9" GridPane.columnIndex="0">ID:</Label>
+            <TextField fx:id="tfID" GridPane.rowIndex="9" GridPane.columnIndex="1"></TextField>
+            <Button fx:id="updateButton" onAction="#Update" GridPane.rowIndex="10" GridPane.columnIndex="1" >Küldés</Button>
+            <Button fx:id="createButton" onAction="#Insert" GridPane.rowIndex="10" GridPane.columnIndex="1" >Küldés</Button>
+            <Label fx:id="Result" GridPane.rowIndex="11" GridPane.columnIndex="0"></Label>
+        </GridPane>
+
+        <GridPane fx:id="deleteForm" hgap="2" vgap="4">
+            <Label GridPane.rowIndex="0" GridPane.columnIndex="0">ID:</Label>
+            <TextField fx:id="deleteID" GridPane.rowIndex="0" GridPane.columnIndex="1"></TextField>
+            <Button onAction="#Delete" GridPane.rowIndex="1" GridPane.columnIndex="1" >Küldés</Button>
+            <Label fx:id="deleteResult" GridPane.rowIndex="2" GridPane.columnIndex="0"></Label>
+        </GridPane>
+
+
+        <GridPane fx:id="restPostPutForm" hgap="2" vgap="4">
+            <Label GridPane.rowIndex="0" GridPane.columnIndex="0">Name:</Label>
+            <TextField fx:id="restName" GridPane.rowIndex="0" GridPane.columnIndex="1"></TextField>
+            <Label GridPane.rowIndex="1" GridPane.columnIndex="0">Gender:</Label>
+            <TextField fx:id="restGender" GridPane.rowIndex="1" GridPane.columnIndex="1"></TextField>
+            <Label GridPane.rowIndex="2" GridPane.columnIndex="0">Email:</Label>
+            <TextField fx:id="restEmail" GridPane.rowIndex="2" GridPane.columnIndex="1"></TextField>
+            <Label GridPane.rowIndex="3" GridPane.columnIndex="0">Status:</Label>
+            <TextField fx:id="restStatus" GridPane.rowIndex="3" GridPane.columnIndex="1"></TextField>
+        </GridPane>
+        <GridPane fx:id="restForm" hgap="2" vgap="4">
+            <Label fx:id="restIDLabel" GridPane.rowIndex="0" GridPane.columnIndex="0">ID:</Label>
+            <TextField fx:id="restID" GridPane.rowIndex="0" GridPane.columnIndex="1"></TextField>
+            <Button fx:id="restGetButton" onAction="#RestGet" GridPane.rowIndex="1" GridPane.columnIndex="1" >Küldés</Button>
+            <Button fx:id="restDeleteButton" onAction="#RestDelete" GridPane.rowIndex="1" GridPane.columnIndex="1" >Küldés</Button>
+            <Button fx:id="restPostButton" onAction="#RestPost" GridPane.rowIndex="1" GridPane.columnIndex="1" >Küldés</Button>
+            <Button fx:id="restPutButton" onAction="#RestPut" GridPane.rowIndex="1" GridPane.columnIndex="1" >Küldés</Button>
+            <Label fx:id="restResult" GridPane.rowIndex="2" GridPane.columnIndex="0"></Label>
+        </GridPane>
+
+        <GridPane fx:id="tobbAlgoritmusGrid" xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10">
+            <Label fx:id="tobbAlgoritmus" GridPane.rowIndex="1" GridPane.columnIndex="0" text="" />
+        </GridPane>
+
+        <GridPane fx:id="streamGrid" xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10">
+            <Label fx:id="streamGridLabel" GridPane.rowIndex="1" GridPane.columnIndex="0" text="" />
+        </GridPane>
+
+        <GridPane xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10">
+            <Button fx:id="startButton" text="Start" onAction="#menuParalell" />
+            <Label fx:id="label1" text="" />
+            <Label fx:id="label2" text="" />
+        </GridPane>
+
+
+
+        <Label fx:id="accountDetails"></Label>
+        <Label fx:id="pricesNow"></Label>
+        <Label fx:id="historicalPrice"></Label>
+        <Label fx:id="postionList"></Label>
+        <Label fx:id="openPos"></Label>
+
+        <TextField fx:id="CloseTradeIdTextField" promptText="Trade ID"/>
+
+
+
+
+    </VBox>
+
+
+</AnchorPane>
+
