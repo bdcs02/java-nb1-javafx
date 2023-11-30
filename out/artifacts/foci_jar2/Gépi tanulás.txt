@@ -1,0 +1,50 @@
+
+classifier.getClass():class weka.classifiers.trees.J48
+null
+Correctly Classified Instances:0.0	NaN%
+Incorrectly Classified Instances:0.0
+No classifier built
+
+
+GépiTanulás1: Vizsgálat részletesen, egyesével:
+TP=0, TN=0, FP=0, FN=0
+
+classifier.getClass():class weka.classifiers.functions.SMO
+null
+Correctly Classified Instances:0.0	NaN%
+Incorrectly Classified Instances:0.0
+SMO: No model built yet.
+
+
+GépiTanulás1: Vizsgálat részletesen, egyesével:
+TP=0, TN=0, FP=0, FN=0
+
+classifier.getClass():class weka.classifiers.bayes.NaiveBayes
+null
+Correctly Classified Instances:0.0	NaN%
+Incorrectly Classified Instances:0.0
+Naive Bayes Classifier: No model built yet.
+
+
+GépiTanulás1: Vizsgálat részletesen, egyesével:
+TP=0, TN=0, FP=0, FN=0
+
+classifier.getClass():class weka.classifiers.lazy.IBk
+null
+Correctly Classified Instances:0.0	NaN%
+Incorrectly Classified Instances:0.0
+IBk: No model built yet.
+
+
+GépiTanulás1: Vizsgálat részletesen, egyesével:
+TP=0, TN=0, FP=0, FN=0
+
+classifier.getClass():class weka.classifiers.trees.RandomForest
+null
+Correctly Classified Instances:0.0	NaN%
+Incorrectly Classified Instances:0.0
+RandomForest: No model built yet.
+
+
+GépiTanulás1: Vizsgálat részletesen, egyesével:
+TP=0, TN=0, FP=0, FN=0

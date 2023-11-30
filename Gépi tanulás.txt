@@ -1,0 +1,228 @@
+
+classifier.getClass():class weka.classifiers.trees.J48
+
+Results
+Correctly Classified Instances         567               73.8281 %
+Incorrectly Classified Instances       201               26.1719 %
+Kappa statistic                          0.4164
+Mean absolute error                      0.3158
+Root mean squared error                  0.4463
+Relative absolute error                 69.4841 %
+Root relative squared error             93.6293 %
+Total Number of Instances              768     
+
+Correctly Classified Instances:567.0	73.828125%
+Incorrectly Classified Instances:201.0
+J48 pruned tree
+------------------
+
+plas <= 127
+|   mass <= 26.4: tested_negative (132.0/3.0)
+|   mass > 26.4
+|   |   age <= 28: tested_negative (180.0/22.0)
+|   |   age > 28
+|   |   |   plas <= 99: tested_negative (55.0/10.0)
+|   |   |   plas > 99
+|   |   |   |   pedi <= 0.561: tested_negative (84.0/34.0)
+|   |   |   |   pedi > 0.561
+|   |   |   |   |   preg <= 6
+|   |   |   |   |   |   age <= 30: tested_positive (4.0)
+|   |   |   |   |   |   age > 30
+|   |   |   |   |   |   |   age <= 34: tested_negative (7.0/1.0)
+|   |   |   |   |   |   |   age > 34
+|   |   |   |   |   |   |   |   mass <= 33.1: tested_positive (6.0)
+|   |   |   |   |   |   |   |   mass > 33.1: tested_negative (4.0/1.0)
+|   |   |   |   |   preg > 6: tested_positive (13.0)
+plas > 127
+|   mass <= 29.9
+|   |   plas <= 145: tested_negative (41.0/6.0)
+|   |   plas > 145
+|   |   |   age <= 25: tested_negative (4.0)
+|   |   |   age > 25
+|   |   |   |   age <= 61
+|   |   |   |   |   mass <= 27.1: tested_positive (12.0/1.0)
+|   |   |   |   |   mass > 27.1
+|   |   |   |   |   |   pres <= 82
+|   |   |   |   |   |   |   pedi <= 0.396: tested_positive (8.0/1.0)
+|   |   |   |   |   |   |   pedi > 0.396: tested_negative (3.0)
+|   |   |   |   |   |   pres > 82: tested_negative (4.0)
+|   |   |   |   age > 61: tested_negative (4.0)
+|   mass > 29.9
+|   |   plas <= 157
+|   |   |   pres <= 61: tested_positive (15.0/1.0)
+|   |   |   pres > 61
+|   |   |   |   age <= 30: tested_negative (40.0/13.0)
+|   |   |   |   age > 30: tested_positive (60.0/17.0)
+|   |   plas > 157: tested_positive (92.0/12.0)
+
+Number of Leaves  : 	20
+
+Size of the tree : 	39
+
+
+
+GépiTanulás1: Vizsgálat részletesen, egyesével:
+TP=17, TN=41, FP=4, FN=14
+
+classifier.getClass():class weka.classifiers.functions.SMO
+
+Results
+Correctly Classified Instances         594               77.3438 %
+Incorrectly Classified Instances       174               22.6563 %
+Kappa statistic                          0.4682
+Mean absolute error                      0.2266
+Root mean squared error                  0.476 
+Relative absolute error                 49.848  %
+Root relative squared error             99.862  %
+Total Number of Instances              768     
+
+Correctly Classified Instances:594.0	77.34375%
+Incorrectly Classified Instances:174.0
+SMO
+
+Kernel used:
+  Linear Kernel: K(x,y) = <x,y>
+
+Classifier for classes: tested_negative, tested_positive
+
+BinarySMO
+
+Machine linear: showing attribute weights, not support vectors.
+
+         1.3614 * (normalized) preg
+ +       4.8764 * (normalized) plas
+ +      -0.8118 * (normalized) pres
+ +      -0.1158 * (normalized) skin
+ +      -0.1776 * (normalized) insu
+ +       3.0745 * (normalized) mass
+ +       1.4242 * (normalized) pedi
+ +       0.2601 * (normalized) age
+ -       5.1761
+
+Number of kernel evaluations: 19131 (69.279% cached)
+
+
+
+
+GépiTanulás1: Vizsgálat részletesen, egyesével:
+TP=19, TN=41, FP=4, FN=12
+
+classifier.getClass():class weka.classifiers.bayes.NaiveBayes
+
+Results
+Correctly Classified Instances         586               76.3021 %
+Incorrectly Classified Instances       182               23.6979 %
+Kappa statistic                          0.4664
+Mean absolute error                      0.2841
+Root mean squared error                  0.4168
+Relative absolute error                 62.5028 %
+Root relative squared error             87.4349 %
+Total Number of Instances              768     
+
+Correctly Classified Instances:586.0	76.30208333333333%
+Incorrectly Classified Instances:182.0
+Naive Bayes Classifier
+
+                         Class
+Attribute      tested_negative tested_positive
+                        (0.65)          (0.35)
+===============================================
+preg
+  mean                   3.4234          4.9795
+  std. dev.              3.0166          3.6827
+  weight sum                500             268
+  precision              1.0625          1.0625
+
+plas
+  mean                 109.9541        141.2581
+  std. dev.             26.1114         31.8728
+  weight sum                500             268
+  precision              1.4741          1.4741
+
+pres
+  mean                  68.1397          70.718
+  std. dev.             17.9834         21.4094
+  weight sum                500             268
+  precision              2.6522          2.6522
+
+skin
+  mean                  19.8356         22.2824
+  std. dev.             14.8974         17.6992
+  weight sum                500             268
+  precision                1.98            1.98
+
+insu
+  mean                  68.8507        100.2812
+  std. dev.              98.828        138.4883
+  weight sum                500             268
+  precision               4.573           4.573
+
+mass
+  mean                  30.3009         35.1475
+  std. dev.              7.6833          7.2537
+  weight sum                500             268
+  precision              0.2717          0.2717
+
+pedi
+  mean                   0.4297          0.5504
+  std. dev.              0.2986          0.3715
+  weight sum                500             268
+  precision              0.0045          0.0045
+
+age
+  mean                  31.2494         37.0808
+  std. dev.             11.6059         10.9146
+  weight sum                500             268
+  precision              1.1765          1.1765
+
+
+
+
+GépiTanulás1: Vizsgálat részletesen, egyesével:
+TP=18, TN=39, FP=6, FN=13
+
+classifier.getClass():class weka.classifiers.lazy.IBk
+
+Results
+Correctly Classified Instances         546               71.0938 %
+Incorrectly Classified Instances       222               28.9063 %
+Kappa statistic                          0.3075
+Mean absolute error                      0.3251
+Root mean squared error                  0.4195
+Relative absolute error                 71.5173 %
+Root relative squared error             88.0116 %
+Total Number of Instances              768     
+
+Correctly Classified Instances:546.0	71.09375%
+Incorrectly Classified Instances:222.0
+IB1 instance-based classifier
+using 10 nearest neighbour(s) for classification
+
+
+
+GépiTanulás1: Vizsgálat részletesen, egyesével:
+TP=13, TN=42, FP=3, FN=18
+
+classifier.getClass():class weka.classifiers.trees.RandomForest
+
+Results
+Correctly Classified Instances         582               75.7813 %
+Incorrectly Classified Instances       186               24.2188 %
+Kappa statistic                          0.4566
+Mean absolute error                      0.3106
+Root mean squared error                  0.4031
+Relative absolute error                 68.3405 %
+Root relative squared error             84.5604 %
+Total Number of Instances              768     
+
+Correctly Classified Instances:582.0	75.78125%
+Incorrectly Classified Instances:186.0
+RandomForest
+
+Bagging with 100 iterations and base learner
+
+weka.classifiers.trees.RandomTree -K 0 -M 1.0 -V 0.001 -S 1 -do-not-check-capabilities
+
+
+GépiTanulás1: Vizsgálat részletesen, egyesével:
+TP=22, TN=39, FP=6, FN=9
