@@ -4,7 +4,7 @@
         "http://www.hibernate.org/dtd/hibernate-configuration">
 <hibernate-configuration>
     <session-factory>
-        <property name="connection.url">jdbc:sqlite:/c:/java/javalite.db</property>
+        <property name="connection.url">jdbc:sqlite:/c:/adatbazis/adatok.db</property>
         <mapping class="grafikus.foci.model.ClubModel"/>
         <mapping class="grafikus.foci.model.SoccersModel"/>
     </session-factory>
